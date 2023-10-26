@@ -1,0 +1,4 @@
+name: SkyBlockCore
+version: '${project.version}'
+main: me.manglam.skyblockcore.SkyBlockCore
+api-version: 1.8
