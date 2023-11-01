@@ -24,3 +24,4 @@ public class EventLogger extends JavaPlugin implements Listener {
 
 // Yeah this is just a test code
 // Will use this to log events such as player command execution etc
+// Would prefer if this code is moved to a utils package thanks
