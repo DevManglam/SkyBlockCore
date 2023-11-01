@@ -8,6 +8,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class EventLogger extends JavaPlugin implements Listener {
 
+    // Somehow create a way to load a C++ library here
+    
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
@@ -15,12 +17,16 @@ public class EventLogger extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
+        DiscordEventLogger(": " + event.getPlayer().getName());
     }
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
+        DiscordEventLogger(": " + event.getPlayer().getName());
     }
+    private native void DiscordEventLogger(String message);
 }
+
 
 // Yeah this is just a test code
 // Will use this to log events such as player command execution etc
