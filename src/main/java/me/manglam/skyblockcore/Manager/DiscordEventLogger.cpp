@@ -1,21 +1,30 @@
 #include <iostream>
-#include <discord.h> 
+#include <curl.h> 
 
-const std::string LOGGER_BOT_TOKEN = "bot authentication token";
-const std::string STAFF_SERVER_ID = "server guild ID";
-const std::string STAFF_CHANNEL_ID = "channel ID";
+const std::string WEBHOOK_URL = "funni webhook url here";
+
+void DiscordEventLogger(const std::string& message) {
+    CURL* curl = curl_easy_init();
+    if (curl) {
+        CURLcode res;
+        curl_easy_setopt(curl, CURLOPT_URL, WEBHOOK_URL.c_str());
+
+        struct curl_slist* headers = NULL;
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+        std::string json_data = "{\"content\":\"" + message + "\"}";
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, json_data.c_str());
+
+        res = curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+    }
+}
 
 int main() {
-    discord::Client client(LOGGER_BOT_TOKEN);
-
-    client.on<discord::events::Ready>([](const discord::events::Ready& event) {
-        std::cout << "h: " << event.user.username << "" << event.user.discriminator << std::endl;
-    });
-
-  client.run();
+    DiscordEventLogger("happy birthday alaa");
 
     return 0;
 }
 
-// God knows which library I need to use to implement this to CPP
-// Also since when is discord.h a thing lol
+// h
