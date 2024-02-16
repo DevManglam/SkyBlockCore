@@ -95,7 +95,7 @@ public class CustomScoreboard {
             Score taskCoreSkyblock = obj.getScore(formatColorCodes("&eOverthrow Dante!"));
             taskCoreSkyblock.setScore(3);
             obj.getScore(formatColorCodes("&1")).setScore(2);
-            Score addressSkyblock = obj.getScore(formatColorCodes("&emc.gamepixel.fun"));
+            Score addressSkyblock = obj.getScore(formatColorCodes("&eme.aicio.fun"));
             addressSkyblock.setScore(1);
 
             player.setScoreboard(board);
